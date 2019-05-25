@@ -5,7 +5,7 @@ var app = express();
 var head = '<head><link rel="icon" href="data:;base64,="><head/>';
 
 app.use('/public', express.static('public'));
-app.use('file', express.static('file'));
+app.use('/file', express.static('file'));
 
 app.get('/', function (req, res) {
     res.end(head + '<a href = "/file">files</a>');
@@ -13,7 +13,7 @@ app.get('/', function (req, res) {
 
 app.get('*', function (req, res) {
     res.writeHead(500, {'Content-Type' : 'text/html;charset=zh-CN'});
-    req.path = path.normalize(req.path + '/');
+    req.path = path.normalize(req.path) + '/';
     console.log(" reach " + req.path);
     var file_path = __dirname + req.path;
     var str = '';
