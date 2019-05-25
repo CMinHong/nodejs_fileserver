@@ -5,9 +5,10 @@ var app = express();
 var head = '<head><link rel="icon" href="data:;base64,="><head/>';
 
 app.use('/public', express.static('public'));
+app.use('file', express.static('file'));
 
 app.get('/', function (req, res) {
-    res.end(head + '<a href = "/public">public</a>');
+    res.end(head + '<a href = "/file">files</a>');
 });
 
 app.get('*', function (req, res) {
@@ -17,8 +18,8 @@ app.get('*', function (req, res) {
     var file_path = __dirname + req.path;
     var str = '';
     str += head;
-    str += '<a href="' + req.path + '">.</a><br/>';
-    str += '<a href="' + path.dirname(req.path) + '">..</a><br/>';
+    str += '<a href="' + req.path + '">.    </a><br/>';
+    str += '<a href="' + path.dirname(req.path) + '">..     </a><br/>';
 
     if (fs.exists(file_path, function(exists){
         if (exists) {

@@ -1,5 +1,5 @@
 *.log
 node_modules
 package-lock.json
-public/*
-!public/test
+file/*
+!file/test
